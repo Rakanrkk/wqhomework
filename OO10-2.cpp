@@ -9,11 +9,11 @@ using namespace std;
 class Student {
 public:
 
-    bool operator>(const Student student) {
+    bool operator>(const Student& student) const {
         return score > student.score;
     }
 
-    bool operator<(const Student student) {
+    bool operator<(const Student& student) const {
         return score < student.score;
     }
 
@@ -29,7 +29,7 @@ public:
 
 private:
     string name;
-    int score;
+    int score{};
 };
 
 int main() {
