@@ -1,97 +1,55 @@
-//
-// Created by Rakan on 2022/4/13.
-//
-
 #include <iostream>
+#include <vector>
+
 using namespace std;
-class Time
-{
-public:
-    Time(int h=0,int m=0,int s=0):hour(h),minute(m),second(s){this->check();}
-    void set(int h,int m,int s)
-    {
-        hour=h;
-        minute=m;
-        second=s;
-    }
-    void check()
-    {
-        while(this->second>=60)
-        {
-            this->second-=60;
-            this->minute+=1;
-        }
-        while(this->minute>=60)
-        {
-            this->minute-=60;
-            this->hour+=1;
-        }
-        while(this->hour>=24)
-        {
-            hour-=24;
-        }
-        while(this->second<=0)
-        {
-            this->second+=60;
-            this->minute-=1;
-        }
-        while(this->minute<=0)
-        {
-            this->minute+=60;
-            this->hour-=1;
-        }
-        while(this->hour<=0)
-        {
-            hour+=24;
-        }
-    }
-    Time operator+(int s) const
-    {
-        Time time;
-        time.second=this->second+s;
-        time.minute=this->minute;
-        time.hour=this->hour;
-        time.check();
-        return time;
-    }
-    Time operator-(int s) const
-    {
-        Time time;
-        time.second=this->second-s;
-        time.minute=this->minute;
-        time.hour=this->hour;
-        time.check();
-        return time;
-    }
-    int operator-(Time &time)
-    {
-        Time tmp;
-        int ans=0;
-        tmp.hour=this->hour-time.hour;
-        tmp.minute=this->minute-time.minute;
-        tmp.second=this->second-time.second;
-        ans=tmp.hour*3600+tmp.minute*60+tmp.second;
-        return ans;
-    }
-    friend ostream &operator<<(ostream &output,const Time &time)
-    {
-        output<<time.hour<<' '<<time.minute<<' '<<time.second;
-        return output;
-    }
-    friend istream &operator>>(istream &input,Time &time)
-    {
-        input>>time.hour>>time.minute>>time.second;
-        return input;
-    }
+
+class vector1 {
 private:
-    int hour;
-    int minute;
-    int second;
+    string name;
+    int grade;
+public:
+    friend istream &operator>>(istream &in, vector1 &a) {
+        in >> a.name;
+        in >> a.grade;
+        return in;
+    }
+
+    friend ostream &operator<<(ostream &out, const vector1 &a) {
+        return out << a.name << " " << a.grade;
+    }
+
+    vector1 operator=(const vector1 &a) {
+        name = a.name;
+        grade = a.grade;
+    }
 };
 
-int main()
-{
-    Time t(1,2,3);
-    cout<<t;
+int main() {
+//    int n;
+//    cin>>n;
+//    vector1 a[n];
+//    for(int i=0;i<n;i++)
+//    {
+//        cin>>a[i];
+//    }
+//    for(int i=0;i<n;i++)
+//    {
+//        for(int j=n-1;j>i;j++)
+//        {
+//            if(a[j].grade>a[j-1].grade)
+//            {
+//                vector tmp;
+//                tmp=a[j-1];
+//                a[j-1]=a[j];
+//                a[j]=tmp;
+//            }
+//        }
+//    }
+//    for(int m=0;m<n;m++)
+//    {
+//        cout<<a[m];
+//        cout<<endl;
+//    }
+//    cout<<endl;
     return 0;
 }
